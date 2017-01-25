@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_sharereceipt"
+        android:icon="@mipmap/share"
+        android:title="Share"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_xls"
+        android:icon="@mipmap/export"
+        android:title="Export"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_print"
+        android:icon="@mipmap/print"
+        android:title="Print"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_receiptsettings"
+        android:orderInCategory="100"
+        android:title="Print"
+        app:showAsAction="never" />
+
+</menu>

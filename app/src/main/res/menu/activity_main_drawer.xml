@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inventory"
+            android:icon="@mipmap/inventory"
+            android:title="Inventory" />
+        <item
+            android:id="@+id/nav_receipt"
+            android:icon="@mipmap/plus"
+            android:title="Receipt" />
+        <item
+            android:id="@+id/nav_issue"
+            android:icon="@mipmap/minus"
+            android:title="Issue" />
+        <item
+            android:id="@+id/nav_opname"
+            android:icon="@mipmap/check"
+            android:title="Stock Opname" />
+    </group>
+
+    <item android:title="Reports">
+        <menu>
+            <item
+                android:id="@+id/nav_summary"
+                android:icon="@mipmap/report"
+                android:title="Summary Report" />
+            <item
+                android:id="@+id/nav_movement"
+                android:icon="@mipmap/report"
+                android:title="Movement Report" />
+        </menu>
+    </item>
+    <item android:title="@string/action_settings">
+    <menu>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@mipmap/settings"
+            android:title="Settings" />
+    </menu>
+
+    </item>
+</menu>
