@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:id="@+id/top">
 
 
         <ImageView
@@ -50,32 +57,37 @@
             android:layout_alignBottom="@+id/imageView2"
             android:layout_alignLeft="@+id/textView6"
             android:layout_alignStart="@+id/textView6"
-            android:id="@+id/textView10" />
+            android:id="@+id/datetime" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView10"
+            android:layout_alignBottom="@+id/datetime"
             android:layout_alignLeft="@+id/textView8"
             android:layout_alignStart="@+id/textView8"
-            android:id="@+id/textView11" />
+            android:id="@+id/stockvalue" />
 
     </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/inventorylist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/inventorylist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+</LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:clickable="true"
+        app:srcCompat="@mipmap/plus2"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="14dp"
         android:id="@+id/fab1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@mipmap/plus2" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:fabSize="normal" />
+
+</RelativeLayout>

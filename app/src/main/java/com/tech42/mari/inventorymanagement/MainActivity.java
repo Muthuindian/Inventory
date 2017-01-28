@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SlidingDrawer;
 
 import com.tech42.mari.inventorymanagement.Management.Activity_Inventory;
 import com.tech42.mari.inventorymanagement.Management.Activity_Issue;
@@ -32,6 +33,7 @@ public class MainActivity extends ActionBarActivity
 
     android.support.v4.app.Fragment fragment=null;
     android.support.v4.app.FragmentManager manager;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class MainActivity extends ActionBarActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,18 +101,26 @@ public class MainActivity extends ActionBarActivity
 
         if (id == R.id.nav_inventory) {
             fragment = new Activity_Inventory();
+            fab.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_receipt) {
             fragment = new Activity_Receipt();
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_issue) {
             fragment = new Activity_Issue();
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_opname) {
             fragment = new Activity_Opname();
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_summary) {
             fragment = new Activity_Summary();
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_movement) {
             fragment = new Activity_Movement();
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_settings) {
             fragment = new Activity_Settings();
+            fab.setVisibility(View.GONE);
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -122,6 +132,7 @@ public class MainActivity extends ActionBarActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
