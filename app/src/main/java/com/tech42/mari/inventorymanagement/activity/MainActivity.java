@@ -1,9 +1,5 @@
-package com.tech42.mari.inventorymanagement;
+package com.tech42.mari.inventorymanagement.activity;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,25 +10,23 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SlidingDrawer;
 
-import com.tech42.mari.inventorymanagement.Management.Activity_Inventory;
-import com.tech42.mari.inventorymanagement.Management.Activity_Issue;
-import com.tech42.mari.inventorymanagement.Management.Activity_Opname;
-import com.tech42.mari.inventorymanagement.Management.Activity_Receipt;
-import com.tech42.mari.inventorymanagement.Reports.Activity_Movement;
-import com.tech42.mari.inventorymanagement.Reports.Activity_Summary;
-import com.tech42.mari.inventorymanagement.Settings.Activity_Settings;
+import com.tech42.mari.inventorymanagement.R;
+import com.tech42.mari.inventorymanagement.fragment.InventoryFragment;
+import com.tech42.mari.inventorymanagement.fragment.IssueFragment;
+import com.tech42.mari.inventorymanagement.fragment.OpnameFragment;
+import com.tech42.mari.inventorymanagement.fragment.ReceiptFragment;
+import com.tech42.mari.inventorymanagement.fragment.MovementFragment;
+import com.tech42.mari.inventorymanagement.fragment.SummaryFragment;
+import com.tech42.mari.inventorymanagement.fragment.SettingsFragment;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     android.support.v4.app.Fragment fragment=null;
-    android.support.v4.app.FragmentManager manager;
     FloatingActionButton fab;
 
     @Override
@@ -100,26 +94,26 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inventory) {
-            fragment = new Activity_Inventory();
+            fragment = new InventoryFragment();
             fab.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_receipt) {
-            fragment = new Activity_Receipt();
+            fragment = new ReceiptFragment();
             fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_issue) {
-            fragment = new Activity_Issue();
+            fragment = new IssueFragment();
             fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_opname) {
-            fragment = new Activity_Opname();
+            fragment = new OpnameFragment();
             fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_summary) {
-            fragment = new Activity_Summary();
+            fragment = new SummaryFragment();
             fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_movement) {
-            fragment = new Activity_Movement();
+            fragment = new MovementFragment();
             fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_settings) {
-            fragment = new Activity_Settings();
+            fragment = new SettingsFragment();
             fab.setVisibility(View.GONE);
         }
 

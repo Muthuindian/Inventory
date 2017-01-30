@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+-->
+
+  <!--  <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+  -->  <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0">
+
+            <EditText android:id="@+id/txtCode"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="code"
+                      android:maxLength="30"
+                      android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    <!--    <ImageView android:layout_gravity="50" android:id="@id/btnBarcode" android:paddingLeft="@dimen/padding" android:paddingBottom="@dimen/padding" android:layout_width="-2" android:layout_height="-2" android:src="@drawable/barcode" />
+    -->
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <AutoCompleteTextView android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="name"
+            android:maxLength="50"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView android:textColor="#0000ff"
+        android:id="@+id/txtCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="category" />
+
+    <Spinner android:id="@+id/spCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<android.support.design.widget.TextInputLayout
+        android:id="@+id/layoutQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/txtQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="quantity"
+            android:maxLength="6"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>-->
+
+
+    <TextView android:textColor="#0000ff"
+        android:id="@+id/txtUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="unit" />
+
+    <Spinner android:id="@+id/spUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<android.support.design.widget.TextInputLayout
+        android:id="@+id/layoutPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="price"
+            android:maxLength="8"
+            android:inputType="numberDecimal" />
+
+    </android.support.design.widget.TextInputLayout>
+-->
+   <!-- </ScrollView>-->
+    </LinearLayout>

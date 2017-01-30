@@ -1,4 +1,4 @@
-package com.tech42.mari.inventorymanagement.RealmModel;
+package com.tech42.mari.inventorymanagement.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
