@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
+//apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 preBuild.dependsOn('checkstyle')
 assemble.dependsOn('lint')
 check.dependsOn('checkstyle')
 
-preBuild.dependsOn('findbugs')
+//preBuild.dependsOn('findbugs')
 preBuild.dependsOn('pmd')
 
 android {

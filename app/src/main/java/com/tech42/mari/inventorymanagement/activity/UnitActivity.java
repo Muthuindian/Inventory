@@ -28,7 +28,7 @@ import java.util.List;
 
 public class UnitActivity extends AppCompatActivity {
 
-    ListView listView;
+    public ListView listView;
     private UnitListRepository repository;
     private List<String> unitlists = new ArrayList<>();
     private FloatingActionButton addbutton;

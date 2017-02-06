@@ -101,7 +101,6 @@ public class MainActivity extends ActionBarActivity
         if (id == R.id.nav_inventory) {
             fragment = new InventoryFragment();
             fab.setVisibility(View.GONE);
-
         } else if (id == R.id.nav_receipt) {
             fragment = new ReceiptFragment();
             fab.setVisibility(View.GONE);
@@ -130,10 +129,5 @@ public class MainActivity extends ActionBarActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-
-    public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
     }
 }

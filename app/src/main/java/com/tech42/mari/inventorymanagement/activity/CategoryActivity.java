@@ -28,12 +28,12 @@ import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    ListView listView;
+    public ListView listView;
     private CategoryListRepository repository;
     private List<String> categorylist = new ArrayList<>();
     private FloatingActionButton addbutton;
     private EditText textCategory;
-    ArrayAdapter<String> adapter;
+    public ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

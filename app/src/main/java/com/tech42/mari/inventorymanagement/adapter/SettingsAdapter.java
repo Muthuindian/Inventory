@@ -31,14 +31,17 @@ public class SettingsAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.item_settings, null, true);
-        ImageView image = (ImageView) rowView.findViewById(R.id.settingsicon);
-        TextView text = (TextView) rowView.findViewById(R.id.description);
+        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_settings, parent, false);
+        }
+        ImageView image = (ImageView) convertView.findViewById(R.id.settingsicon);
+        TextView text = (TextView) convertView.findViewById(R.id.description);
         image.setImageResource(imageId[position]);
         text.setText(description[position]);
-        return rowView;
+        return convertView;
     }
 }

@@ -33,7 +33,7 @@ allprojects {
         classpath = files()
     }
 
-    task findbugs(type: FindBugs) {
+    /*task findbugs(type: FindBugs) {
         ignoreFailures = false;
         effort = "default";
 
@@ -50,7 +50,7 @@ allprojects {
                 destination "$project.buildDir/findbugs/findbugs.html"
             }
         }
-    }
+    }*/
 
     task pmd(type: Pmd) {
         //ruleSetFiles = files("${project.rootDir}/settings/pmd-ruleset.xml")
