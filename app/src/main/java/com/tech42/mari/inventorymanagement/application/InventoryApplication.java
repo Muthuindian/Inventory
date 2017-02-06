@@ -18,7 +18,7 @@ public class InventoryApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RealmConfiguration configuration = new RealmConfiguration.Builder(this).build();
+        RealmConfiguration configuration = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
         Realm.setDefaultConfiguration(configuration);
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)

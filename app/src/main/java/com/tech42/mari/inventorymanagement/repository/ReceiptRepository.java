@@ -1,5 +1,7 @@
 package com.tech42.mari.inventorymanagement.repository;
 
+import android.util.Log;
+
 import com.tech42.mari.inventorymanagement.model.Receipt;
 
 import java.util.ArrayList;
@@ -13,9 +15,9 @@ import io.realm.exceptions.RealmException;
  */
 
 public class ReceiptRepository {
-    Realm realm;
-    RealmResults<Receipt> realmResults;
-    Boolean saved = null;
+    private Realm realm;
+    private RealmResults<Receipt> realmResults;
+    private Boolean saved = null;
 
     public ReceiptRepository(Realm realm) {
         this.realm = realm;
@@ -32,7 +34,7 @@ public class ReceiptRepository {
                         Receipt receiptobject = realm.copyToRealm(receipt);
                         saved = true;
                     } catch (RealmException ex) {
-                        ex.printStackTrace();
+                        Log.e("Exception" , ex.toString());
                         saved = false;
                     }
                 }
@@ -41,11 +43,7 @@ public class ReceiptRepository {
         return saved;
     }
 
-    public void RetrievefromDB() {
-        realmResults = realm.where(Receipt.class).findAll();
-    }
-
-    public ArrayList<Receipt> Refresh() {
+    public ArrayList<Receipt> refresh() {
         ArrayList<Receipt> latestresults = new ArrayList<>();
         realmResults = realm.where(Receipt.class).findAll();
         for (Receipt i : realmResults) {

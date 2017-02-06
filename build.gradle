@@ -19,6 +19,59 @@ allprojects {
             url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo'
         }
     }
+    task checkstyle(type: Checkstyle) {
+        showViolations = true
+        configFile file("../settings/checkstyle.xml")
+
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+
+        // empty classpath
+        classpath = files()
+    }
+
+    task findbugs(type: FindBugs) {
+        ignoreFailures = false;
+        effort = "default";
+
+        //excludeFilter = file("${project.rootDir}/config/quality/findbugs/findbugs-filter.xml")
+        classes = files("${project.rootDir}/app/build/intermediates/classes")
+        source = fileTree('src/main/java/')
+
+        classpath = files()
+
+        reports {
+            html.enabled = true
+            xml.enabled = false
+            html {
+                destination "$project.buildDir/findbugs/findbugs.html"
+            }
+        }
+    }
+
+    task pmd(type: Pmd) {
+        //ruleSetFiles = files("${project.rootDir}/settings/pmd-ruleset.xml")
+        ruleSetFiles = files("${project.rootDir}/config/quality/pmd/pmd-ruleset.xml")
+        ignoreFailures = false
+        ruleSets = [ ]
+
+        source 'src'
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        classpath = files()
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            html {
+                destination "$project.buildDir/reports/pmd/pmd.html"
+            }
+        }
+    }
 }
 
 task clean(type: Delete) {

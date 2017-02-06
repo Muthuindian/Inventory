@@ -34,13 +34,13 @@ import io.realm.Realm;
 
 public class ReceiptFragment extends Fragment implements View.OnClickListener {
 
-    Realm realm;
-    ReceiptAdapter adapter;
-    RecyclerView recyclerView;
-    FloatingActionButton addbutton;
-    ReceiptRepository controller;
-    EditText textDoc, textDate, textComment;
-    ArrayList<Receipt> latestresults = new ArrayList<>();
+    private Realm realm;
+    private ReceiptAdapter adapter;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addbutton;
+    private ReceiptRepository controller;
+    private EditText textDoc, textDate, textComment;
+    private ArrayList<Receipt> latestresults = new ArrayList<>();
 
 
     @Nullable
@@ -60,8 +60,7 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Receipt");
-        controller.RetrievefromDB();
-        latestresults = controller.Refresh();
+        latestresults = controller.refresh();
         adapter = new ReceiptAdapter(getContext(), latestresults);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -83,7 +82,7 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (v == addbutton) {
+        if (v.equals(addbutton)) {
             displayDialog();
         }
     }
@@ -139,6 +138,9 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
                 receipt.setPrice(0);
                 controller = new ReceiptRepository(realm);
                 controller.save(receipt);
+                latestresults = controller.refresh();
+                adapter = new ReceiptAdapter(getContext(), latestresults);
+                recyclerView.setAdapter(adapter);
             }
         });
         dialog.show();

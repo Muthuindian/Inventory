@@ -1,6 +1,7 @@
 package com.tech42.mari.inventorymanagement.fragment;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,13 +20,21 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.tech42.mari.inventorymanagement.R;
 import com.tech42.mari.inventorymanagement.adapter.InventoryAdapter;
+import com.tech42.mari.inventorymanagement.model.Category;
 import com.tech42.mari.inventorymanagement.model.Inventory;
+import com.tech42.mari.inventorymanagement.model.SummaryReport;
+import com.tech42.mari.inventorymanagement.repository.CategoryListRepository;
+import com.tech42.mari.inventorymanagement.repository.CategoryRepository;
 import com.tech42.mari.inventorymanagement.repository.InventoryRepository;
+import com.tech42.mari.inventorymanagement.repository.SummaryRepository;
+import com.tech42.mari.inventorymanagement.repository.UnitListRepository;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,18 +48,21 @@ import io.realm.Realm;
 
 public class InventoryFragment extends Fragment implements View.OnClickListener {
 
-    Realm realm;
-    InventoryAdapter adapter;
-    RecyclerView recyclerView;
-    FloatingActionButton addbutton;
-    InventoryRepository controller;
-    EditText textcode, textname;
-    Spinner textcat, textunit;
-    String[] categorylist = new String[]{"General"};
-    String[] unitlist = new String[]{"cm", "kg", "pcs"};
-    ArrayList<Inventory> latestresults = new ArrayList<>();
-    RelativeLayout topview;
-    TextView currentdate, stockvalue;
+    private Realm realm;
+    public static InventoryAdapter adapter;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addbutton;
+    private InventoryRepository controller;
+    private EditText textcode, textname;
+    private Spinner textcat, textunit;
+    private String[] categorylist;
+    private String[] unitlist;
+    private UnitListRepository unitListRepository;
+    private CategoryListRepository categoryListRepository;
+    private ArrayList<Inventory> latestresults = new ArrayList<>();
+    private RelativeLayout topview;
+    private TextView currentdate;
+    private static int i;
 
 
     @Nullable
@@ -57,17 +70,57 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         realm = Realm.getDefaultInstance();
+        unitListRepository = new UnitListRepository(getContext());
+        i = 0;
+        try {
+            unitListRepository.createDataBase();
+        } catch (IOException e) {
+            Log.e("Exception" , e.toString());
+        }
+        unitListRepository.openDataBase();
+        Cursor data = unitListRepository.getAllData();
+        if (data != null) {
+            Toast.makeText(getActivity() , "No of Rows" + data.getCount() ,  Toast.LENGTH_SHORT).show();
+            unitlist = new String[data.getCount()];
+            if (data.moveToFirst()) {
+                do {
+                    {
+                        unitlist[i] = data.getString(data.getColumnIndex("unit"));
+                        i++;
+                    }
+                } while (data.getCount() != i && data.moveToNext());
+            }
+        }
+        categoryListRepository = new CategoryListRepository(getContext());
+        i = 0;
+        try {
+            categoryListRepository.createDataBase();
+        } catch (IOException e) {
+            Log.e("Exception" , e.toString());
+        }
+        categoryListRepository.openDataBase();
+        Cursor allData = categoryListRepository.getAllData();
+        if (allData != null) {
+            Toast.makeText(getActivity() , "No of Rows" + allData.getCount() ,  Toast.LENGTH_SHORT).show();
+            categorylist = new String[allData.getCount()];
+            if (allData.moveToFirst()) {
+                do {
+                    {
+                        categorylist[i] = allData.getString(allData.getColumnIndex("category"));
+                        i++;
+                    }
+                } while (allData.getCount() != i && allData.moveToNext());
+            }
+        }
         View view = inflater.inflate(R.layout.fragment_inventory, null);
         topview = (RelativeLayout) view.findViewById(R.id.top);
         currentdate = (TextView) view.findViewById(R.id.datetime);
-        stockvalue = (TextView) view.findViewById(R.id.stockvalue);
         topview.setOnClickListener(this);
         recyclerView = (RecyclerView) view.findViewById(R.id.inventorylist);
         addbutton = (FloatingActionButton) view.findViewById(R.id.fab1);
         addbutton.setOnClickListener(this);
         controller = new InventoryRepository(realm);
         return view;
-
     }
 
     @Override
@@ -78,8 +131,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
         Date cal = Calendar.getInstance().getTime();
         date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cal);
         currentdate.setText(date);
-        controller.retrieveFromDB();
-        latestresults = controller.Refresh();
+        latestresults = controller.refresh();
         adapter = new InventoryAdapter(getContext(), latestresults);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -96,10 +148,10 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (v == addbutton) {
+        if (v.equals(addbutton)) {
             displayDialog();
         }
-        if (v == topview) {
+        if (v.equals(topview)) {
             new SingleDateAndTimePickerDialog.Builder(getContext())
                     //.bottomSheet()
                     //.curved()
@@ -151,6 +203,25 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
                 inventory.setTotalvalue(0);
                 controller = new InventoryRepository(realm);
                 controller.save(inventory);
+                Category category = new Category();
+                category.setCode(textcode.getText().toString());
+                category.setName(textname.getText().toString());
+                category.setCategoryname(textcat.getSelectedItem().toString());
+                category.setUnit(textunit.getSelectedItem().toString());
+                CategoryRepository repository = new CategoryRepository(realm);
+                repository.save(category);
+                SummaryReport summaryReport = new SummaryReport();
+                summaryReport.setCode(textcode.getText().toString());
+                summaryReport.setName(textname.getText().toString());
+                summaryReport.setIn(0);
+                summaryReport.setOut(0);
+                summaryReport.setOutvalue(0);
+                summaryReport.setInvalue(0);
+                SummaryRepository srepository = new SummaryRepository(realm);
+                srepository.save(summaryReport);
+                latestresults = controller.refresh();
+                InventoryFragment.adapter = new InventoryAdapter(getContext() , latestresults);
+                recyclerView.setAdapter(InventoryFragment.adapter);
             }
         });
         dialog.show();

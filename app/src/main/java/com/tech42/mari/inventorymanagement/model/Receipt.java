@@ -11,10 +11,10 @@ import io.realm.annotations.Required;
 public class Receipt extends RealmObject {
 
     @PrimaryKey
-    private String DocumentNumber;
+    private String documentNumber;
 
     @Required
-    private String Date;
+    private String date;
 
     @Required
     private String comments;
@@ -83,19 +83,19 @@ public class Receipt extends RealmObject {
     }
 
     public String getDocumentNumber() {
-        return DocumentNumber;
+        return documentNumber;
     }
 
     public void setDocumentNumber(String documentNumber) {
-        DocumentNumber = documentNumber;
+        this.documentNumber = documentNumber;
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public String getComments() {

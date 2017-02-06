@@ -11,13 +11,14 @@ import android.widget.TextView;
 
 import com.tech42.mari.inventorymanagement.R;
 
+
 /**
  * Created by mari on 1/25/17.
  */
 
 public class SettingsAdapter extends ArrayAdapter {
 
-    Activity context;
+    private Activity context;
     private int[] imageId;
     private String[] description;
 

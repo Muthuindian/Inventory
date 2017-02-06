@@ -7,7 +7,7 @@
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:id="@+id/card"
-    card_view:cardBackgroundColor="#000000"
+    card_view:cardBackgroundColor="#ffffff"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="3dp"
     card_view:contentPadding="4dp"
@@ -25,7 +25,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Document Number:"/>
+                android:text="Document Number:"
+                android:textColor="#0000ff"
+                android:textStyle="normal|bold" />
             <TextView
                 android:id="@+id/comment"
                 android:layout_marginTop="5dp"
@@ -33,7 +35,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Comments:"/>
+                android:text="Comments:"
+                android:textColor="#0000ff"
+                android:textStyle="normal|bold" />
         </TableRow>
 
         <TableRow>
@@ -45,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                android:textColor="@android:color/background_light" />
+                android:textColor="#000000" />
             <TextView
                 android:id="@+id/commenttext"
                 android:layout_marginTop="5dp"
@@ -54,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                android:textColor="@android:color/background_light" />
+                android:textColor="#000000" />
         </TableRow>
 
         <TableRow>
@@ -64,7 +68,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date:"/>
+                android:text="Date:"
+                android:textColor="#0000ff"
+                android:textStyle="normal|bold" />
             <TextView
                 android:id="@+id/total1"
                 android:layout_marginTop="10dp"
@@ -72,7 +78,9 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toatal value:"/>
+                android:text="Toatal value:"
+                android:textColor="#0000ff"
+                android:textStyle="normal|bold" />
         </TableRow>
 
         <TableRow>
@@ -85,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                android:textColor="@android:color/background_light" />
+                android:textColor="#000000" />
             <TextView
                 android:id="@+id/total1text"
                 android:layout_marginTop="5dp"
@@ -93,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                android:textColor="@android:color/background_light" />
+                android:textColor="#000000" />
         </TableRow>
 
     </TableLayout>

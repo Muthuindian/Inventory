@@ -23,11 +23,16 @@ import com.tech42.mari.inventorymanagement.fragment.MovementFragment;
 import com.tech42.mari.inventorymanagement.fragment.SummaryFragment;
 import com.tech42.mari.inventorymanagement.fragment.SettingsFragment;
 
+
+/**
+ * Created by mari on 1/27/17.
+ */
+
 public class MainActivity extends ActionBarActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    android.support.v4.app.Fragment fragment=null;
-    FloatingActionButton fab;
+    private android.support.v4.app.Fragment fragment = null;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

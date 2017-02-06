@@ -10,7 +10,7 @@ import io.realm.annotations.Required;
 
 public class Issue extends RealmObject {
 
-    @PrimaryKey
+    @Required
     private String code;
 
     @Required
@@ -25,14 +25,16 @@ public class Issue extends RealmObject {
 
     private double price;
 
-    @Required
-    private String DocumentNumber;
+    @PrimaryKey
+    private String documentNumber;
 
     @Required
-    private String Date;
+    private String date;
 
     @Required
     private String comments;
+
+    private double total;
 
 
     public String getCode() {
@@ -84,19 +86,19 @@ public class Issue extends RealmObject {
     }
 
     public String getDocumentNumber() {
-        return DocumentNumber;
+        return documentNumber;
     }
 
     public void setDocumentNumber(String documentNumber) {
-        DocumentNumber = documentNumber;
+        this.documentNumber = documentNumber;
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public String getComments() {
@@ -105,5 +107,13 @@ public class Issue extends RealmObject {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

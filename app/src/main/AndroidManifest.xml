@@ -15,8 +15,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <categoryname android:name="android.intent.categoryname.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.UnitActivity" android:parentActivityName=".activity.MainActivity"
+                  android:label="Add Unit">
+        </activity>
+        <activity android:name=".activity.CategoryActivity" android:parentActivityName=".activity.MainActivity"
+                  android:label="Add Category">
+
         </activity>
     </application>
 

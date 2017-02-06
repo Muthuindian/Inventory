@@ -18,8 +18,8 @@ import java.util.ArrayList;
  */
 
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.MyViewHolder> {
-    ArrayList<Inventory> inventories;
-    Context mycontext;
+    private ArrayList<Inventory> inventories;
+    private Context mycontext;
 
     public InventoryAdapter(Context context, ArrayList<Inventory> inventories) {
         this.mycontext = context;
@@ -38,8 +38,14 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.MyVi
         Inventory inventoryobject = inventories.get(position);
         holder.code.setText(inventoryobject.getCode());
         holder.name.setText(inventoryobject.getName());
-        holder.quantity.setText("0 " + inventoryobject.getUnit() + "s");
-        holder.totalValue.setText((int) inventoryobject.getTotalvalue());
+        if (inventoryobject.getQuantity() == 0) {
+            holder.quantity.setText("0" + inventoryobject.getUnit() + "s");
+            holder.totalValue.setText("0");
+        } else {
+            holder.quantity.setText(inventoryobject.getQuantity() + " " + inventoryobject.getUnit() + "s");
+            holder.totalValue.setText(String.valueOf(inventoryobject.getTotalvalue()));
+        }
+
         holder.category.setText(inventoryobject.getCategory());
     }
 
@@ -48,9 +54,14 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.MyVi
         return inventories.size();
     }
 
+
+    /**
+     * Created by mari on 1/27/17.
+     */
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView code, name, quantity, totalValue, category;
+        private TextView code, name, quantity, totalValue, category;
 
         public MyViewHolder(View itemView) {
             super(itemView);

@@ -50,7 +50,7 @@
         android:id="@+id/txtCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="category" />
+        android:text="categoryname" />
 
     <Spinner android:id="@+id/spCategory"
         android:layout_width="match_parent"

@@ -17,7 +17,10 @@ public class Category extends RealmObject {
     private String name;
 
     @Required
-    private String category;
+    private String categoryname;
+
+    @Required
+    private String unit;
 
 
     public String getCode() {
@@ -36,11 +39,19 @@ public class Category extends RealmObject {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCategoryname() {
+        return categoryname;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryname(String categoryname) {
+        this.categoryname = categoryname;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

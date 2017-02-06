@@ -1,9 +1,8 @@
 package com.tech42.mari.inventorymanagement.repository;
 
-
 import android.util.Log;
 
-import com.tech42.mari.inventorymanagement.model.Inventory;
+import com.tech42.mari.inventorymanagement.model.MovementReport;
 
 import java.util.ArrayList;
 
@@ -12,28 +11,28 @@ import io.realm.RealmResults;
 import io.realm.exceptions.RealmException;
 
 /**
- * Created by mari on 1/27/17.
+ * Created by mari on 2/2/17.
  */
 
-public class InventoryRepository {
+public class MovementRepository {
 
     private Realm realm;
-    private RealmResults<Inventory> realmResults;
+    private RealmResults<MovementReport> realmResults;
     private Boolean saved = null;
 
-    public InventoryRepository(Realm realm) {
+    public MovementRepository(Realm realm) {
         this.realm = realm;
     }
 
-    public boolean save(final Inventory inventory) {
-        if (inventory == null) {
+    public boolean save(final MovementReport report) {
+        if (report == null) {
             saved = false;
         } else {
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
                     try {
-                        Inventory inventoryobject = realm.copyToRealm(inventory);
+                        MovementReport reportobject = realm.copyToRealm(report);
                         saved = true;
                     } catch (RealmException ex) {
                         Log.e("Exception" , ex.toString());
@@ -45,12 +44,14 @@ public class InventoryRepository {
         return saved;
     }
 
-    public ArrayList<Inventory> refresh() {
-        ArrayList<Inventory> latestresults = new ArrayList<>();
-        realmResults = realm.where(Inventory.class).findAll();
-        for (Inventory i : realmResults) {
+    public ArrayList<MovementReport> refresh() {
+        ArrayList<MovementReport> latestresults = new ArrayList<>();
+        realmResults = realm.where(MovementReport.class).findAll();
+        for (MovementReport i : realmResults) {
             latestresults.add(i);
         }
         return latestresults;
     }
+
+
 }
